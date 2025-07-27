@@ -7,6 +7,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import { RouterProvider } from "react-router";
 import Cart from "./pages/Cart/Cart";
 import { ProductFilterProvider } from "./context/ProductFilterContext/ProductFilterContext";
+import ThemeContextProvider from "./context/ThemeContext/ThemeContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -31,12 +32,14 @@ function App() {
     },
   ]);
   return (
-    <QueryClientProvider client={queryClient}>
-      <ProductFilterProvider>
-        <RouterProvider router={routes} />
-      </ProductFilterProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <ThemeContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ProductFilterProvider>
+          <RouterProvider router={routes} />
+        </ProductFilterProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ThemeContextProvider>
   );
 }
 

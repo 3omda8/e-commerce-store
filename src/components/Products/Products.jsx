@@ -53,7 +53,7 @@ function Products() {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="p-2 rounded-lg border border-gray-300 mt-4 focus:outline-none"
+            className="p-2 rounded-lg border border-b-8 dark:border-b-2 border-gray-300 mt-4 focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600"
           >
             <option value="" disabled={true}>
               Sort By Price or Name
@@ -71,7 +71,7 @@ function Products() {
         {products?.map((product) => (
           <div
             key={product.id}
-            className="p-3 rounded-lg shadow-lg bg-gray-200 hover:cursor-pointer hover:shadow-xl hover:shadow-gray-700 transition-shadow duration-300 relative"
+            className="p-3 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-500 hover:cursor-pointer hover:shadow-xl dark:hover:shadow-gray-300 hover:shadow-gray-700 transition-shadow duration-300 relative"
           >
             <Link to={`products/${product.id}`}>
               <p className=" font-semibold text-right">

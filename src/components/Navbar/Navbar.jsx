@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
 import ProductFilterContext from "../../context/ProductFilterContext/ProductFilterContext";
+import { ThemeContext } from "./../../context/ThemeContext/ThemeContext";
 
 function Navbar() {
   let { searchTerm, setSearchTerm, allProducts } =
     useContext(ProductFilterContext);
+  let { theme, toggleTheme } = useContext(ThemeContext);
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -15,7 +17,7 @@ function Navbar() {
       )
     : [];
   return (
-    <div className="flex justify-between items-center px-4 py-2 bg-gray-800 text-white">
+    <div className="flex justify-between items-center px-4 py-2 bg-gray-800 text-white dark:bg-gray-200 dark:text-black ">
       <Link to="/">
         <div className="start">
           <img src={Logo} alt="logo" className="w-14 rounded-full" />
@@ -34,7 +36,7 @@ function Navbar() {
           placeholder="Search..."
         />
         {showDropdown && filteredResults.length > 0 && (
-          <ul className="absolute top-14 w-1/2 md:w-1/5 mx-auto z-50 bg-white text-black shadow-lg rounded-lg mt-1 max-h-64 overflow-y-auto">
+          <ul className="absolute top-14 w-1/2 md:w-1/5 mx-auto z-50 bg-white text-black shadow-lg rounded-lg mt-1 max-h-64 overflow-y-auto ">
             {filteredResults.map((product) => (
               <li key={product.id}>
                 <Link
@@ -56,9 +58,16 @@ function Navbar() {
           </ul>
         )}
       </div>
-      <Link to="/cart" className="text-white">
-        <div className="end">Cart</div>
-      </Link>
+      <button
+        onClick={toggleTheme}
+        className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
+      >
+        {theme === "light" ? (
+          <i className="fa-regular fa-moon"></i>
+        ) : (
+          <i className="fa-solid fa-sun" style={{ color: "#FFD43B" }}></i>
+        )}
+      </button>
     </div>
   );
 }
