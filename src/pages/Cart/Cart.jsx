@@ -29,9 +29,9 @@ function Cart() {
           key={item.id}
           className="flex justify-between items-center bg-gray-100 p-4 mb-3 rounded-lg"
         >
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ">
             <img src={item.image} alt={item.title} className="w-16 h-16" />
-            <div>
+            <div className="dark:text-black">
               <h2 className="font-bold">{item.title}</h2>
               <p className="text-sm">Price: ${item.price.toFixed(2)}</p>
               <div className="flex items-center gap-2 mt-2">
