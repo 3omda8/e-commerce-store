@@ -9,9 +9,7 @@ function Products() {
   let { sortOrder, setSortOrder } = useContext(ProductFilterContext);
 
   function getProducts() {
-    return axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => res.data);
+    return axios.get("https://fakestoreapi.com/produc").then((res) => res.data);
   }
 
   let { data, isLoading, error } = useQuery({
@@ -46,9 +44,14 @@ function Products() {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
+      {isLoading ? <Loader /> : null}
+      {error ? (
+        <p className="mt-26 text-center font-bold text-3xl text-red-600 border-4 py-3 px-4 w-1/2 mx-auto rounded-lg">
+          Failed to fetch products: {error.message}
+        </p>
+      ) : null}
+
+      {!isLoading && !error && (
         <div className="flex justify-end items-center pe-3">
           <select
             value={sortOrder}
@@ -64,9 +67,6 @@ function Products() {
           </select>
         </div>
       )}
-      {error ? (
-        <p className="text-center font-bold text-3xl">{error.message}</p>
-      ) : null}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 w-[90%] mx-auto md:w-full ">
         {products?.map((product) => (
           <div
