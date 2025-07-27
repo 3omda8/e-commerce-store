@@ -3,11 +3,13 @@ import Logo from "../../assets/Logo.png";
 import { useContext, useState } from "react";
 import ProductFilterContext from "../../context/ProductFilterContext/ProductFilterContext";
 import { ThemeContext } from "./../../context/ThemeContext/ThemeContext";
+import CartContext from "../../context/CartContext/CartContext";
 
 function Navbar() {
   let { searchTerm, setSearchTerm, allProducts } =
     useContext(ProductFilterContext);
   let { theme, toggleTheme } = useContext(ThemeContext);
+  let { cartItems } = useContext(CartContext);
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -58,16 +60,28 @@ function Navbar() {
           </ul>
         )}
       </div>
-      <button
-        onClick={toggleTheme}
-        className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
-      >
-        {theme === "light" ? (
-          <i className="fa-regular fa-moon"></i>
-        ) : (
-          <i className="fa-solid fa-sun" style={{ color: "#FFD43B" }}></i>
-        )}
-      </button>
+      <div className="flex items-center gap-4 relative">
+        <Link to="/cart">
+          {cartItems.length > 0 && (
+            <span className="absolute top-[-5px] left-4 bg-red-500 text-white text-sm font-bold px-2 rounded-full">
+              {cartItems.length}
+            </span>
+          )}
+
+          <i className="fas fa-shopping-cart text-2xl"></i>
+        </Link>
+
+        <button
+          onClick={toggleTheme}
+          className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
+        >
+          {theme === "light" ? (
+            <i className="fa-regular fa-moon"></i>
+          ) : (
+            <i className="fa-solid fa-sun" style={{ color: "#FFD43B" }}></i>
+          )}
+        </button>
+      </div>
     </div>
   );
 }

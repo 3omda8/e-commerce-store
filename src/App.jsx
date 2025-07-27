@@ -8,6 +8,8 @@ import { RouterProvider } from "react-router";
 import Cart from "./pages/Cart/Cart";
 import { ProductFilterProvider } from "./context/ProductFilterContext/ProductFilterContext";
 import ThemeContextProvider from "./context/ThemeContext/ThemeContext";
+import { CartProvider } from "./context/CartContext/CartContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const queryClient = new QueryClient();
@@ -35,7 +37,10 @@ function App() {
     <ThemeContextProvider>
       <QueryClientProvider client={queryClient}>
         <ProductFilterProvider>
-          <RouterProvider router={routes} />
+          <CartProvider>
+            <RouterProvider router={routes} />
+            <Toaster position="top-right" reverseOrder={false} />
+          </CartProvider>
         </ProductFilterProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

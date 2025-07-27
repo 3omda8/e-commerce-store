@@ -2,9 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext/CartContext";
 
 function ProductDetails() {
   let { id } = useParams();
+  let { addToCart } = useContext(CartContext);
+
+  function handleAddToCart(product) {
+    addToCart(product);
+  }
 
   function getProductById() {
     return axios
@@ -43,6 +50,14 @@ function ProductDetails() {
                   <i className="fas fa-star text-yellow-300 text-lg"></i>
                   {data?.rating.rate}
                 </p>
+              </div>
+              <div className="pt-4">
+                <button
+                  onClick={() => handleAddToCart(data)}
+                  className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 hover:cursor-pointer w-full"
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

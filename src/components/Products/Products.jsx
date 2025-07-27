@@ -4,12 +4,21 @@ import Loader from "../Loader/Loader";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import ProductFilterContext from "../../context/ProductFilterContext/ProductFilterContext";
+import CartContext from "../../context/CartContext/CartContext";
 
 function Products() {
   let { sortOrder, setSortOrder } = useContext(ProductFilterContext);
 
+  let { addToCart } = useContext(CartContext);
+
   function getProducts() {
-    return axios.get("https://fakestoreapi.com/produc").then((res) => res.data);
+    return axios
+      .get("https://fakestoreapi.com/products")
+      .then((res) => res.data);
+  }
+
+  function handleAddToCart(product) {
+    addToCart(product);
   }
 
   let { data, isLoading, error } = useQuery({
@@ -46,7 +55,7 @@ function Products() {
     <>
       {isLoading ? <Loader /> : null}
       {error ? (
-        <p className="mt-26 text-center font-bold text-3xl text-red-600 border-4 py-3 px-4 w-1/2 mx-auto rounded-lg">
+        <p className="mt-26 text-center font-bold text-3xl dark:text-white text-red-600 border-4 py-3 px-4 w-1/2 mx-auto rounded-lg">
           Failed to fetch products: {error.message}
         </p>
       ) : null}
@@ -89,6 +98,14 @@ function Products() {
                 {product.title}
               </h2>
             </Link>
+            <div className="pt-4">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 hover:cursor-pointer w-full"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>
