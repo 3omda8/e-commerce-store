@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/Logo.png";
 import { useContext, useState } from "react";
 import ProductFilterContext from "../../context/ProductFilterContext/ProductFilterContext";
 import { ThemeContext } from "./../../context/ThemeContext/ThemeContext";
