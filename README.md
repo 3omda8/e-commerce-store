@@ -1,12 +1,86 @@
-# React + Vite
+# 🛒 E-Commerce Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Project Overview
 
-Currently, two official plugins are available:
+This is a modern e-commerce store built with **React**, **Vite**, and **React Query**. It displays products fetched from the [Fake Store API](https://fakestoreapi.com/), with features such as:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Product listing & detail pages
+- Filter & Sorting products
+- Shopping cart (Add,Remove and Update)
+- Cart persistence using `localStorage`
+- Theme switching (Light/Dark)
+- React Query DevTools for API state debugging
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🖼️ Screenshots / Demo
+
+### Home Page
+
+./src/assets/screenshots/Home-Light.png
+./src/assets/screenshots/Home-dark.png
+
+### Product Details
+
+./src/assets/screenshots/Product-Details-and-SearchBar
+
+### Cart Page
+
+./src/assets/screenshots/Cart-dark.png
+
+### Live Demo:
+
+[https://e-commerce-store-ten-sepia.vercel.app/]
+
+---
+
+## 🧱 Tech Stack Used
+
+| Category         | Tools                    |
+| ---------------- | ------------------------ |
+| Frontend         | React, Vite              |
+| Styling          | Tailwind CSS             |
+| Icons            | Fontawesome              |
+| Routing          | React Router             |
+| State Management | React Context + useState |
+| API Handling     | Axios + React Query      |
+| Persistence      | localStorage             |
+| DevTools         | React Query Devtools     |
+| Deployment       | Vercel                   |
+
+---
+
+## 📁 Folder Structure (Simplified)
+
+```
+src/
+├── components/
+│   └── Layout, Navbar, Products, Footer, Loader
+├── context/
+│   ├── ProductFilterContext/
+│   └── ThemeContext/
+|   |__ CartContext/
+├── pages/
+│   ├── Home/
+│   ├── ProductDetails/
+│   └── Cart/
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 🚀 Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 🙌 Author
+
+**Mohamed Emad Hamdy Dawood**
+
+Feel free to contribute or fork the project!
